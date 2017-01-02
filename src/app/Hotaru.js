@@ -4,6 +4,7 @@
  */
 import React, {Component} from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
+import FontIcon from 'material-ui/FontIcon';
 import Dialog from 'material-ui/Dialog';
 import {deepOrange500} from 'material-ui/styles/colors';
 import Toggle from 'material-ui/Toggle';
@@ -15,7 +16,14 @@ const styles = {
     textAlign: 'center',
     paddingTop: 200,
   },
+  labelText: {
+    paddingTop: 200,
+  }
 };
+
+const iconStyles = {
+};
+
 
 // Not currently using this, see Main.js for usage
 const muiTheme = getMuiTheme({
@@ -33,10 +41,6 @@ class Hotaru extends Component {
               label="Power"
               defaultToggled={false}
           />
-
-
-          <span>Power</span><br />
-          <button>On</button> <button>Off</button>
         </div>
       </MuiThemeProvider>
     );
