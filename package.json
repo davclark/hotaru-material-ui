@@ -1,7 +1,7 @@
 {
-  "name": "material-ui-example-webpack",
-  "version": "0.16.4",
-  "description": "Sample project that uses Material-UI",
+  "name": "hotaru-material-ui",
+  "version": "0.0.0",
+  "description": "LED controller that uses Material-UI",
   "repository": {
     "type": "git",
     "url": "https://github.com/callemall/material-ui.git"
