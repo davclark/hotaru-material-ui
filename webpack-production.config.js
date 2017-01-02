@@ -12,6 +12,7 @@ const config = {
   output: {
     path: buildPath, // Path of output file
     filename: 'app.js', // Name of output file
+    publicPath: "/static/",
   },
   plugins: [
     // Define production build to allow React to strip out unnecessary checks
@@ -30,6 +31,9 @@ const config = {
     // Allows error warnings but does not stop compiling.
     new webpack.NoErrorsPlugin(),
     // Transfer Files
+    // This will copy unwanted files, with no way to exclude
+    // Apparently this is more flexible:
+    // https://github.com/kevlened/copy-webpack-plugin
     new TransferWebpackPlugin([
       {from: 'www'},
     ], path.resolve(__dirname, 'js')),
@@ -39,7 +43,7 @@ const config = {
       {
         test: /\.js$/, // All .js files
         loaders: ['babel-loader'], // react-hot is like browser sync and babel loads jsx and es6-7
-        exclude: [nodeModulesPath, /\.swp$/],
+        exclude: [nodeModulesPath, /\.sw[opq]$/],
       },
     ],
   },
