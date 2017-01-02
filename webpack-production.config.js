@@ -1,11 +1,11 @@
 const webpack = require('webpack');
 const path = require('path');
-const buildPath = path.resolve(__dirname, 'build');
+const buildPath = path.resolve(__dirname, 'static');
 const nodeModulesPath = path.resolve(__dirname, 'node_modules');
 const TransferWebpackPlugin = require('transfer-webpack-plugin');
 
 const config = {
-  entry: [path.join(__dirname, '/src/app/app.js')],
+  entry: [path.join(__dirname, '/js/app/app.js')],
   // Render source-map file for final build
   devtool: 'source-map',
   // output config
@@ -32,14 +32,14 @@ const config = {
     // Transfer Files
     new TransferWebpackPlugin([
       {from: 'www'},
-    ], path.resolve(__dirname, 'src')),
+    ], path.resolve(__dirname, 'js')),
   ],
   module: {
     loaders: [
       {
         test: /\.js$/, // All .js files
         loaders: ['babel-loader'], // react-hot is like browser sync and babel loads jsx and es6-7
-        exclude: [nodeModulesPath],
+        exclude: [nodeModulesPath, /\.swp$/],
       },
     ],
   },
