@@ -1,5 +1,8 @@
+from __future__ import print_function
+
 from bibliopixel.led import LEDStrip
 from bibliopixel.drivers.LPD8806 import DriverLPD8806, ChannelOrder
+
 
 class Root(object):
     @property
@@ -14,20 +17,42 @@ class Greeting(object):
     def __init__(self, person):
         self.person = person
 
+
+class DummyStrip:
+    '''Dummy API if we don't have spidev installed
+
+    Real code lives here: 
+        https://github.com/ManiacalLabs/BiblioPixel/blob/master/bibliopixel/led.py
+    '''
+
+    def fill(self, color):
+        pass
+
+    def all_off(self):
+        pass
+
+    def update(self):
+        pass
+
+
 class Lights:
     '''BiblioPixel controller'''
 
-    r=255
-    g=255
-    b=255
+    r = 255
+    g = 255
+    b = 255
 
     active = None
 
     def __init__(self):
         # We could also just specify colors in this order in functions like 
         # fill, but this keeps us in a canonical way to specify color
-        self.driver = DriverLPD8806(32, c_order=ChannelOrder.GRB)
-        self.strip = LEDStrip(self.driver)
+        try:
+            self.driver = DriverLPD8806(32, c_order=ChannelOrder.GRB)
+            self.strip = LEDStrip(self.driver)
+        except ImportError:
+            print('** SPI support not available. Running in dummy mode!')
+            self.strip = DummyStrip()
 
         self.off()
         self.active = False
@@ -36,7 +61,6 @@ class Lights:
         color = (self.r, self.g, self.b)
         self.strip.fill(color)
 
-        # XXX check return value?
         self.strip.update()
 
         self.active = True
@@ -44,7 +68,6 @@ class Lights:
     def off(self):
         self.strip.all_off()
 
-        # XXX check return value?
         self.strip.update()
 
         self.active = False
@@ -55,5 +78,6 @@ class Lights:
                 'b': self.b,
                 'active': self.active,
                 }
+
 
 lights = Lights()
