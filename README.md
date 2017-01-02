@@ -11,9 +11,15 @@ You can run the code using a clean Python environment (using virtualenv)
   $ virtualenv env
   $ source env/bin/activate
 
-After this you can install dependencies using
+After this you can install minimal dependencies using the following, **BUT BLINKY
+LIGHTS WILL NOT WORK!** This allows us to install on development machines that
+lack the Linux SPI libraries.
 
   $ env/bin/pip install -e .
+
+For working blinky lights, we need
+
+  $ env/bin/pip install -e '.[full]'
 
 Once that is done you can start the server
 
@@ -29,6 +35,7 @@ For installing the test suite and running the tests use
   $ env/bin/pip install -e '.[test]'
   $ env/bin/py.test
 
+If testing with SPI available, you can use `'.[test,full]'`.
 
 
 React / Material-UI Webpack Component

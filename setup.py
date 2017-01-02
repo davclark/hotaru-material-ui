@@ -24,13 +24,15 @@ setup(
     # dependency_links=['https://github.com/ManiacalLabs/BiblioPixel/tarball/dev#egg=BiblioPixel-3.dev'],
     install_requires=[
         'morepath',
-	'BiblioPixel',
-        'spidev',
+        'BiblioPixel',
     ],
     extras_require=dict(
         test=[
             'pytest',
             'webtest',
+        ],
+        full=[
+            'spidev',
         ],
     ),
     entry_points=dict(
