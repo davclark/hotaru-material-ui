@@ -33,13 +33,43 @@ const muiTheme = getMuiTheme({
 });
 
 class Hotaru extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {active: false};
+
+    // Make this work in callbacks
+    this.handleToggle = this.handleToggle.bind(this);
+  }
+
+  switch(onoff) {
+    let url = `/api/lights/${onoff}`;
+
+    // This is all not rather careful...
+    return fetch(url)
+        .then(response => response.json())
+        .then(json => {this.setState({active: json.status.active})});
+  }
+
+  handleToggle(event) {
+    // Interestingly, this always provides value="on" no matter what!
+    // console.log(event.target)
+
+    if(this.state.active) {
+        this.switch('off');
+    }
+    else {
+        this.switch('on');
+    }
+  }
+
   render() {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
           <Toggle
               label="Power"
-              defaultToggled={false}
+              toggled={this.state.active}
+              onToggle={this.handleToggle}
           />
         </div>
       </MuiThemeProvider>
