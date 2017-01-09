@@ -13,10 +13,13 @@ def get_greeting(person):
 
 
 @App.path(model=model.Lights, path='/lights/{action}')
-def light_switch(action):
+def light_switch(action, r, g, b):
     if action == 'on':
-        model.lights.on()
+        # We don't convert to ints here (rather pass unicode strings),
+        # as we don't want to special case None
+        model.lights.on(r, g, b)
     elif action == 'off':
+        # Currently we don't supply colors to off
         model.lights.off()
 
     return model.lights

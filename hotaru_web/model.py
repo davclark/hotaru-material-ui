@@ -57,7 +57,14 @@ class Lights:
         self.off()
         self.active = False
 
-    def on(self):
+    def on(self, r=None, g=None, b=None):
+        if r is not None:
+            self.r = int(r)
+        if g is not None:
+            self.g = int(g)
+        if b is not None:
+            self.b = int(b)
+            
         color = (self.r, self.g, self.b)
         self.strip.fill(color)
 
