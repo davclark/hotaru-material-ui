@@ -1,0 +1,14 @@
+# systemd unit file to start Hotaru at boot
+# Install in /etc/systemd/system
+
+[Unit]
+Description=Hotaru Lights
+
+[Service]
+User=nobody
+Group=spi
+ExecStart=/home/dav/hotaru-material-ui/env/bin/run-app --host 0.0.0.0
+WorkingDirectory=/home/dav/hotaru-material-ui
+
+[Install]
+WantedBy=multi-user.target
