@@ -1,14 +1,17 @@
 # systemd unit file to start Hotaru at boot
 # Install in /etc/systemd/system
+# then run `sudo systemctl enable hotaru-web`
 
 [Unit]
 Description=Hotaru Lights
+Requires=local-fs.target
 
 [Service]
 User=nobody
 Group=spi
 ExecStart=/home/dav/hotaru-material-ui/env/bin/run-app --host 0.0.0.0
 WorkingDirectory=/home/dav/hotaru-material-ui
+StandardInput=null
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
