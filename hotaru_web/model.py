@@ -88,3 +88,6 @@ class Lights:
 
 
 lights = Lights()
+# When we take control of lights, we reset to ensure consistency with internal
+# state
+lights.off()
