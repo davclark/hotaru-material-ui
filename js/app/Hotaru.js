@@ -4,12 +4,14 @@
  */
 import React, {Component} from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
-import FontIcon from 'material-ui/FontIcon';
+import IconButton from 'material-ui/IconButton';
 import Dialog from 'material-ui/Dialog';
 import {deepOrange500} from 'material-ui/styles/colors';
 import Toggle from 'material-ui/Toggle';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
+import Slider from 'material-ui/Slider';
 
 const styles = {
   container: {
@@ -23,7 +25,6 @@ const styles = {
 
 const iconStyles = {
 };
-
 
 // Not currently using this, see Main.js for usage
 const muiTheme = getMuiTheme({
@@ -66,11 +67,18 @@ class Hotaru extends Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
+          <AppBar
+              title="Hotaru"
+              className="accent1Color"
+          />
           <Toggle
               label="Power"
               toggled={this.state.active}
               onToggle={this.handleToggle}
           />
+          <Slider defaultValue={0.5} />
+          <Slider defaultValue={0.5} />
+          <Slider defaultValue={0.5} />
         </div>
       </MuiThemeProvider>
     );
