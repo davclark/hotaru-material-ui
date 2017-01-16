@@ -81,7 +81,12 @@ class Hotaru extends Component {
   handleRedChange(event, value) {
       this.state.r = value;
   }
-
+  handleGreenChange(event, value) {
+      this.state.g = value;
+  }
+  handleBlueChange(event, value) {
+      this.state.b = value;
+  }
   render() {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
@@ -103,8 +108,22 @@ class Hotaru extends Component {
               step={1}
               style={{trackColor: "#ff0000"}}
           />
-          <Slider defaultValue={0.5} />
-          <Slider defaultValue={0.5} />
+          <Slider
+              value={this.state.g}
+              onChange={this.handleGreenChange}
+              onDragStop={this.handleUpdate}
+              max={255}
+              step={1}
+              style={{trackColor: "#ff0000"}}
+          />
+          <Slider
+              value={this.state.b}
+              onChange={this.handleBlueChange}
+              onDragStop={this.handleUpdate}
+              max={255}
+              step={1}
+              style={{trackColor: "#ff0000"}}
+          />
         </div>
       </MuiThemeProvider>
     );
