@@ -45,6 +45,8 @@ class Hotaru extends Component {
     this.handleToggle = this.handleToggle.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handleRedChange = this.handleRedChange.bind(this);
+    this.handleGreenChange = this.handleGreenChange.bind(this);
+    this.handleBlueChange = this.handleBlueChange.bind(this);
 
   }
 
