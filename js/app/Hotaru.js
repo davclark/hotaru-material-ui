@@ -20,7 +20,10 @@ const styles = {
   },
   labelText: {
     paddingTop: 200,
-  }
+  },
+  Slider: {
+    backgroundColor: "#ff0000",
+  },
 };
 
 const iconStyles = {
@@ -36,7 +39,7 @@ const muiTheme = getMuiTheme({
 class Hotaru extends Component {
   constructor(props) {
     super(props);
-    this.state = {active: false};
+    this.state = {active: false, r: 255, g: 255, b: 255};
 
     // Make this work in callbacks
     this.handleToggle = this.handleToggle.bind(this);
@@ -76,7 +79,12 @@ class Hotaru extends Component {
               toggled={this.state.active}
               onToggle={this.handleToggle}
           />
-          <Slider defaultValue={0.5} />
+          <Slider
+              value={this.state.r}
+              max={255}
+              step={1}
+              style={{trackColor: "#ff0000"}}
+          />
           <Slider defaultValue={0.5} />
           <Slider defaultValue={0.5} />
         </div>
