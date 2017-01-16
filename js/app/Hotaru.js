@@ -43,10 +43,13 @@ class Hotaru extends Component {
 
     // Make this work in callbacks
     this.handleToggle = this.handleToggle.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleRedChange = this.handleRedChange.bind(this);
+
   }
 
   switch(onoff) {
-    let url = `/api/lights/${onoff}`;
+    let url = `/api/lights/${onoff}?r=${this.state.r}`;
 
     // This is all not rather careful...
     return fetch(url)
@@ -55,7 +58,8 @@ class Hotaru extends Component {
   }
 
   handleToggle(event) {
-    // Interestingly, this always provides value="on" no matter what!
+    // Interestingly, the following line always provides value="on" no matter
+    // what!
     // console.log(event.target)
 
     if(this.state.active) {
@@ -64,6 +68,18 @@ class Hotaru extends Component {
     else {
         this.switch('on');
     }
+  }
+
+  handleUpdate(event) {
+    // Note, this logic is somewhat the reverse of handleToggle
+    // We are updating color, not flipping the switch
+    if(this.state.active) {
+        this.switch('on');
+    }
+  }
+
+  handleRedChange(event, value) {
+      this.state.r = value;
   }
 
   render() {
@@ -81,6 +97,8 @@ class Hotaru extends Component {
           />
           <Slider
               value={this.state.r}
+              onChange={this.handleRedChange}
+              onDragStop={this.handleUpdate}
               max={255}
               step={1}
               style={{trackColor: "#ff0000"}}
