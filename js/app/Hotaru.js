@@ -51,7 +51,7 @@ class Hotaru extends Component {
   }
 
   switch(onoff) {
-    let url = `/api/lights/${onoff}?r=${this.state.r}`;
+    let url = `/api/lights/${onoff}?r=${this.state.r}&g=${this.state.g}&b=${this.state.b}`;
 
     // This is all not rather careful...
     return fetch(url)
