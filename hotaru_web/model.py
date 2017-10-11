@@ -1,7 +1,7 @@
 from __future__ import print_function
 
-from bibliopixel.led import LEDStrip
-from bibliopixel.drivers.LPD8806 import DriverLPD8806, ChannelOrder
+from bibliopixel.layout.strip import Strip
+from bibliopixel.drivers.SPI.LPD8806 import LPD8806, ChannelOrder
 
 
 class Root(object):
@@ -48,8 +48,8 @@ class Lights:
         # We could also just specify colors in this order in functions like 
         # fill, but this keeps us in a canonical way to specify color
         try:
-            self.driver = DriverLPD8806(32, c_order=ChannelOrder.GRB)
-            self.strip = LEDStrip(self.driver)
+            self.driver = LPD8806(32, c_order=ChannelOrder.GRB, interface='PERIPHERY')
+            self.strip = Strip(self.driver)
         except ImportError:
             print('** SPI support not available. Running in dummy mode!')
             self.strip = DummyStrip()
